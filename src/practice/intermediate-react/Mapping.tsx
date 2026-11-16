@@ -1,5 +1,5 @@
 import React from 'react'
-import ComboBox from './ConditionalRendering'
+import ComboBox from './ComboBox'
 
 interface Todo {
     id: number

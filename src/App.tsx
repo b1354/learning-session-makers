@@ -1,6 +1,6 @@
 import './App.css'
 import BasicComponent from './practice/foundational-react/BasicComponent'
-import ComboBox from './practice/intermediate-react/ConditionalRendering'
+import ComboBox from './practice/intermediate-react/ComboBox'
 import Mapping from './practice/intermediate-react/Mapping'
 
 function App() {
