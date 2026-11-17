@@ -28,10 +28,10 @@ const Mapping = ({ todosData }: { todosData: Todo[] }) => {
                     />
                 ))}
             </div>
-            <div className="flex flex-col border border-gray-200 rounded-lg bg-white shadow-sm m-2">
-                <h1>Completed</h1>
+            <div className="flex flex-col border px-4 border-gray-200 rounded-lg bg-white shadow-sm m-2">
+                <h1 className="font-bold">Completed</h1>
                 {todos.map((todo) => (
-                    todo.completed && <p>{todo.text}</p>
+                    todo.completed && <p className="text-gray-600 text-sm">{todo.text}</p>
                 ))}
             </div>
         </div>

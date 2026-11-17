@@ -22,12 +22,15 @@ const FormComponent = () => {
           onChange={(e) => setEmail(e.target.value)}
         />
         <CheckBoxComponent checked={false} notes={'Check me'} name={'checkme'} onChange={(e) => setIsChecked(e.target.checked)} />
-        <button 
-          type="submit" 
+        <button
+          type="submit"
           className="border border-gray-200 rounded-lg bg-white shadow-sm m-2 px-4 py-2"
         >
           Submit
         </button>
+        <a href="/" className="text-blue-500 underline font-light text-sm p-2 w-full text-left">
+          Go Back Home
+        </a>
       </form>
     </div>
   )
