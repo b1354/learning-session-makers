@@ -2,18 +2,19 @@ import React from "react"
 
 interface ComboBox extends React.HTMLAttributes<HTMLInputElement> {
     checked: boolean, 
+    isTodos?: boolean,
     notes: string,
     name: string
 }
 
-const ConditionalRendering = ({...props}: ComboBox) => {
+const CheckBoxComponent = ({...props}: ComboBox) => {
     const [isChecked, setChecked] = React.useState(props.checked || false)
     const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setChecked(e.target.checked)
     }
     return (
         <div className={
-            "flex items-center gap-3 px-4 rounded-lg shadow-sm transition-colors hover:bg-gray-50" + " " +
+            "flex items-center gap-3 px-4 rounded-lg transition-colors hover:bg-gray-50" + " " +
             props.className
         }>
             <input
@@ -33,7 +34,7 @@ const ConditionalRendering = ({...props}: ComboBox) => {
             />
             <label
                 htmlFor={props.name}
-                className={`cursor-pointer w-full py-3 select-none text-sm transition-colors ${isChecked ? "text-gray-400 line-through" : "text-gray-800"}`}
+                className={`cursor-pointer w-full py-3 select-none text-sm transition-colors ${isChecked && props.isTodos ? "text-gray-400 line-through" : "text-gray-800"}`}
             >
                 {props.notes}
             </label>
@@ -41,4 +42,4 @@ const ConditionalRendering = ({...props}: ComboBox) => {
     )
 }
 
-export default ConditionalRendering
+export default CheckBoxComponent

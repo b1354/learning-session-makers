@@ -1,5 +1,5 @@
 import React from 'react'
-import ComboBox from './ComboBox'
+import CheckBoxComponent from './CheckBox'
 
 interface Todo {
     id: number
@@ -11,15 +11,16 @@ const Mapping = ({ todosData }: { todosData: Todo[] }) => {
     const [todos, setTodos] = React.useState<Todo[]>(todosData)
 
     return (
-        <div className="flex flex-col border border-gray-200 rounded-lg bg-white shadow-sm m-2">
+        <div className="flex flex-col">
             <div className="flex flex-col border border-gray-200 rounded-lg bg-white shadow-sm m-2">
                  <h1 className="font-bold mb-2 px-4 py-2">Task</h1>
                 {todos.map((todo) => (
-                    <ComboBox
+                    <CheckBoxComponent
                         key={todo.id}
                         checked={todo.completed}
                         notes={todo.text}
                         name={`todo-${todo.id}`}
+                        isTodos={true}
                         className="border-b rounded-none border-gray-200 last:border-none"
                         onChange={(e) => {
                             setTodos((prevTodos) => prevTodos.map((t) => {
