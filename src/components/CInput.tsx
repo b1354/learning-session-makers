@@ -1,8 +1,10 @@
 import React from 'react'
 
+interface CInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+    
+}
 
-
-const CInput = ({...props}: CInputProps) => {
+const CInput = (_: CInputProps) => {
   return (
     <div>CInput</div>
   )

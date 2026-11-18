@@ -11,7 +11,7 @@ const Mapping = ({ todosData }: { todosData: Todo[] }) => {
     const [todos, setTodos] = React.useState<Todo[]>(todosData)
 
     return (
-        <div className="flex flex-col border border-gray-200 rounded-lg bg-white shadow-sm m-2">
+        <div className="flex flex-col">
             <div className="flex flex-col border border-gray-200 rounded-lg bg-white shadow-sm m-2">
                 {todos.map((todo) => (
                     <ComboBox
@@ -28,11 +28,13 @@ const Mapping = ({ todosData }: { todosData: Todo[] }) => {
                     />
                 ))}
             </div>
-            <div className="flex flex-col border px-4 border-gray-200 rounded-lg bg-white shadow-sm m-2">
+            <div className="flex flex-col gap-4 border px-4 py-4 border-gray-200 rounded-lg bg-white shadow-sm m-2">
                 <h1 className="font-bold">Completed</h1>
-                {todos.map((todo) => (
-                    todo.completed && <p className="text-gray-600 text-sm">{todo.text}</p>
-                ))}
+                <div className="flex flex-col gap-2">
+                    {todos.map((todo) => (
+                        todo.completed && <p className="text-gray-600 text-sm">{todo.text}</p>
+                    ))}
+                </div>
             </div>
         </div>
     )

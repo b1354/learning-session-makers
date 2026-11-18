@@ -3,10 +3,11 @@ import React from 'react'
 interface JokeResult {
   id: string
   joke: string
+  fact?: string
   status: number
 }
 
-const ApiPlayground = () => {
+const ApiPlayground = ({url='https://icanhazdadjoke.com/'}: {url?: string}) => {
   const [data, setData] = React.useState<JokeResult | null>(null)
   const [error, setError] = React.useState<string | null>(null)
 
@@ -14,7 +15,7 @@ const ApiPlayground = () => {
     const fetchData = async () => {
       setError(null)
       try {
-        const response = await fetch('https://icanhazdadjoke.com/', {
+        const response = await fetch(url, {
           headers: {
             'Accept': 'application/json'
           }
@@ -32,7 +33,7 @@ const ApiPlayground = () => {
   }, [])
   return (
     <div className={`p-2 ${error && 'text-red-500'}`}>
-      {data ? data.joke : error}
+      {data ? data.joke ? data.joke : data.fact : error}
       <br />
       {/* <button 
         className="text-blue-500 underline font-light text-sm"
