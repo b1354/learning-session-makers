@@ -20,6 +20,7 @@ const Mapping = ({ todosData }: { todosData: Todo[] }) => {
                         notes={todo.text}
                         name={`todo-${todo.id}`}
                         className="border-b rounded-none border-gray-200 last:border-none"
+                        isTodos={true}
                         onChange={(e) => {
                             setTodos((prevTodos) => prevTodos.map((t) => {
                                 return t.id === todo.id ? { ...t, completed: e.target.checked } : t
