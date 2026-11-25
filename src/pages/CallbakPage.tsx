@@ -1,4 +1,3 @@
-import React from 'react'
 import CallBackTest from '../practice/advanced-react/use-callback/CallBackTest'
 import { Link } from 'react-router'
 

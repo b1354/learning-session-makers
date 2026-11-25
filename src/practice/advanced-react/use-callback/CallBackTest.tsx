@@ -1,4 +1,4 @@
-import React, { useState, memo, useCallback, useEffect } from 'react'
+import { useState, memo, useCallback, useEffect } from 'react'
 
 const ComplexChild = memo(({ onClick, title }: {
   onClick: () => void
