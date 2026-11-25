@@ -8,12 +8,10 @@ interface ICart {
 
 interface CartContextType {
     cart: ICart[]
-    addToCart: (item: ICart) => void
-    removeFromCart: (index: number) => void
+    dispatch: (action: { type: string; payload?: any }) => void
 }
 
 export const CartContext = createContext<CartContextType>({ 
-    cart: [], 
-    addToCart: () => {},
-    removeFromCart: () => {}
+    cart: [],
+    dispatch: () => {}
 })

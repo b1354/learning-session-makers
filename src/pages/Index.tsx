@@ -6,7 +6,7 @@ import PasswordInput from '../practice/intermediate-react/lifecycle-method-hooks
 import Mapping from '../practice/intermediate-react/Mapping'
 import SButton from '../practice/intermediate-react/css-styling/SButton'
 import SCard from '../practice/intermediate-react/css-styling/SCard'
-import { CartContext } from '../practice/advanced-react/context-api'
+import { CartContext } from '../practice/advanced-react/CartContext'
 import { Link } from 'react-router'
 
 interface ICart {
@@ -24,7 +24,7 @@ const products: ICart[] = [
 const Index = () => {
     const [showDadApi, setshowDadApi] = React.useState(false)
     const [showCatApi, setshowCatApi] = React.useState(false)
-    const { cart, addToCart, removeFromCart } = React.useContext(CartContext)
+    const { cart, dispatch } = React.useContext(CartContext)
 
     const total = cart.reduce((sum, item) => sum + item.price, 0)
 
@@ -62,6 +62,9 @@ const Index = () => {
                 <a href="/about" className="text-blue-500 underline font-light text-sm">
                     Go to About Page
                 </a>
+                <a href="/callback" className="text-blue-500 underline font-light text-sm">
+                    Go to Callback Page
+                </a>
             </div>
 
             <div className="p-4 flex gap-2 items-center">
@@ -82,13 +85,13 @@ const Index = () => {
                         imageSrc={product.imageSrc}
                         title={product.name}
                         subtitle={`$${product.price.toFixed(2)}`}
-                        onClick={() => addToCart({ name: product.name, price: product.price })}
+                        onClick={() => dispatch({ type: 'ADD_ITEM', payload: { name: product.name, price: product.price } })}
                     >
                         <button 
                             className="w-full mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
                             onClick={(e) => {
                                 e.stopPropagation()
-                                addToCart({ name: product.name, price: product.price })
+                                dispatch({ type: 'ADD_ITEM', payload: { name: product.name, price: product.price } })
                             }}
                         >
                             Add to Cart
@@ -110,7 +113,7 @@ const Index = () => {
                                 <div className="flex items-center gap-4">
                                     <span className="font-bold">${item.price.toFixed(2)}</span>
                                     <button
-                                        onClick={() => removeFromCart(index)}
+                                        onClick={() => dispatch({ type: 'REMOVE_ITEM', payload: index })}
                                         className="text-red-500 hover:text-red-700 text-sm"
                                     >
                                         Remove

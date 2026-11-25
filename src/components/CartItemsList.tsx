@@ -1,5 +1,5 @@
 import React from 'react'
-import { CartContext } from '../practice/advanced-react/context-api'
+import { CartContext } from '../practice/advanced-react/CartContext'
 
 interface CartItemsListProps {
   onRemove?: (index: number) => void
@@ -7,13 +7,13 @@ interface CartItemsListProps {
 }
 
 const CartItemsList = ({ onRemove, showRemove = true }: CartItemsListProps) => {
-  const { cart, removeFromCart } = React.useContext(CartContext)
+  const { cart, dispatch } = React.useContext(CartContext)
 
   const handleRemove = (index: number) => {
     if (onRemove) {
       onRemove(index)
     } else if (showRemove) {
-      removeFromCart(index)
+      dispatch({ type: 'REMOVE_ITEM', payload: index })
     }
   }
 

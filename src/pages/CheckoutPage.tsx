@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
-import { CartContext } from '../practice/advanced-react/context-api'
+import { CartContext } from '../practice/advanced-react/CartContext'
 import CartItemsList from '../components/CartItemsList'
 import SButton from '../practice/intermediate-react/css-styling/SButton'
 
