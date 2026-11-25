@@ -65,6 +65,9 @@ const Index = () => {
                 <a href="/callback" className="text-blue-500 underline font-light text-sm">
                     Go to Callback Page
                 </a>
+                <a href="/lazy-loading" className="text-blue-500 underline font-light text-sm">
+                    Go to Chart Page
+                </a>
             </div>
 
             <div className="p-4 flex gap-2 items-center">

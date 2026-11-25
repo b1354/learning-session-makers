@@ -1,12 +1,17 @@
 import './App.css'
-import { useReducer } from 'react'
+import { useReducer, Suspense, lazy } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router'
-import Index from './pages/Index'
-import About from './pages/About'
-import FormPage from './pages/FormPage'
-import CheckoutPage from './pages/CheckoutPage'
-import CallbackPage from './pages/CallbakPage'
+import LazyFallback from './components/LazyFallback'
 import { CartContext } from './practice/advanced-react/CartContext'
+import ErrorBoundary from './components/ErrorBoundary'
+import BuggyComponent from './practice/advanced-react/error-boundaries-and-suspense/BuggyComponent'
+
+const Index = lazy(() => import('./pages/Index'))
+const About = lazy(() => import('./pages/About'))
+const FormPage = lazy(() => import('./pages/FormPage'))
+const CheckoutPage = lazy(() => import('./pages/CheckoutPage'))
+const CallbackPage = lazy(() => import('./pages/CallbakPage'))
+const LazyLoadingPage = lazy(() => import('./pages/LazyLoadingPage'))
 
 interface ICart {
   name: string
@@ -31,17 +36,23 @@ function App() {
   const [cart, dispatch] = useReducer(cartReducer, [])
 
   return (
-    <CartContext.Provider value={{ cart, dispatch }}>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/form" element={<FormPage />} />
-          <Route path="/checkout" element={<CheckoutPage />} />
-          <Route path="/callback" element={<CallbackPage />} />
-        </Routes>
-      </BrowserRouter>
-    </CartContext.Provider>
+    <ErrorBoundary>
+      <CartContext.Provider value={{ cart, dispatch }}>
+        <BrowserRouter>
+          <Suspense fallback={<LazyFallback />}>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/form" element={<FormPage />} />
+              <Route path="/checkout" element={<CheckoutPage />} />
+              <Route path="/callback" element={<CallbackPage />} />
+              <Route path="/lazy-loading" element={<LazyLoadingPage />} />
+              <Route path="/buggy-component" element={<BuggyComponent />} />
+            </Routes>
+          </Suspense>
+        </BrowserRouter>
+      </CartContext.Provider>
+    </ErrorBoundary>
   )
 }
 
